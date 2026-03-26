@@ -8,6 +8,7 @@ import { useSubmitApplication } from "@workspace/api-client-react";
 import { useToast } from "@/hooks/use-toast";
 import { CheckCircle2, Loader2 } from "lucide-react";
 
+// Form Validation Schema
 const formSchema = z.object({
   fullName: z.string().min(2, "Full name is required"),
   email: z.string().email("Invalid email address"),
@@ -27,11 +28,16 @@ export default function Admissions() {
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(formSchema),
-    defaultValues: { department: "", courseOfInterest: "" },
+    defaultValues: {
+      department: "",
+      courseOfInterest: ""
+    }
   });
 
   const selectedDepartment = watch("department");
-  const availableCourses = DEPARTMENTS.find((d) => d.name === selectedDepartment)?.programs || [];
+  
+  // Find courses based on selected department
+  const availableCourses = DEPARTMENTS.find(d => d.name === selectedDepartment)?.programs || [];
 
   const onSubmit = (data: FormData) => {
     applicationMutation.mutate(
@@ -42,8 +48,9 @@ export default function Admissions() {
           toast({
             title: "Application Submitted",
             description: "Your application has been successfully submitted. Our team will contact you.",
+            variant: "default",
           });
-          window.scrollTo({ top: 0, behavior: "smooth" });
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         },
         onError: () => {
           toast({
@@ -51,129 +58,154 @@ export default function Admissions() {
             description: "There was an error submitting your application. Please try again.",
             variant: "destructive",
           });
-        },
+        }
       }
     );
   };
 
-  const fieldClass = (hasError: boolean) =>
-    `w-full px-4 py-3 rounded-xl bg-slate-50 border-2 ${
-      hasError ? "border-red-400 focus:border-red-400" : "border-gray-200 focus:border-primary"
-    } focus:outline-none transition-colors text-base`;
-
   return (
     <PageLayout>
-      <PageHeader
-        title="Apply for Admission"
+      <PageHeader 
+        title="Apply for Admission" 
         description="Take the first step towards your new career. Fill out the application form below."
         image={IMAGES.review}
       />
 
-      <section className="py-12 sm:py-16 lg:py-20 bg-slate-50">
+      <section className="py-20 bg-slate-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-
+          
           {isSuccess ? (
-            <div className="bg-white p-8 sm:p-12 rounded-2xl sm:rounded-3xl shadow-xl border border-gray-100 text-center">
-              <div className="w-20 h-20 sm:w-24 sm:h-24 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-5 sm:mb-6">
-                <CheckCircle2 className="w-10 h-10 sm:w-12 sm:h-12" />
+            <div className="bg-white p-12 rounded-3xl shadow-xl border border-gray-100 text-center">
+              <div className="w-24 h-24 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                <CheckCircle2 className="w-12 h-12" />
               </div>
-              <h2 className="text-2xl sm:text-3xl font-display font-bold text-primary mb-3 sm:mb-4">Application Received!</h2>
-              <p className="text-base sm:text-xl text-gray-600 mb-6 sm:mb-8 leading-relaxed">
+              <h2 className="text-3xl font-display font-bold text-primary mb-4">Application Received!</h2>
+              <p className="text-xl text-gray-600 mb-8">
                 Your application has been successfully submitted. Our admissions team will review your details and contact you shortly at the provided email/phone.
               </p>
-              <button
+              <button 
                 onClick={() => setIsSuccess(false)}
-                className="px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl font-bold bg-primary text-white hover:bg-primary/90 transition-colors active:scale-95 text-sm sm:text-base"
+                className="px-8 py-3 rounded-xl font-bold bg-primary text-white hover:bg-primary/90 transition-colors"
               >
                 Submit Another Application
               </button>
             </div>
           ) : (
-            <div className="bg-white p-6 sm:p-8 lg:p-12 rounded-2xl sm:rounded-3xl shadow-xl border border-gray-100">
-              <div className="mb-6 sm:mb-8">
-                <h2 className="text-xl sm:text-2xl font-display font-bold text-primary mb-1.5">Student Application Form</h2>
-                <p className="text-gray-500 text-sm sm:text-base">Please provide accurate information. All fields are required.</p>
+            <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-gray-100">
+              <div className="mb-8">
+                <h2 className="text-2xl font-display font-bold text-primary mb-2">Student Application Form</h2>
+                <p className="text-gray-500">Please provide accurate information. All fields are required.</p>
               </div>
 
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 sm:space-y-6" noValidate>
-                {/* Row 1 */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
-                  <div className="space-y-1.5">
-                    <label className="text-sm font-bold text-primary block">Full Name</label>
-                    <input {...register("fullName")} className={fieldClass(!!errors.fullName)} placeholder="John Doe" autoComplete="name" />
-                    {errors.fullName && <p className="text-sm text-red-500">{errors.fullName.message}</p>}
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  {/* Full Name */}
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-primary">Full Name</label>
+                    <input 
+                      {...register("fullName")}
+                      className={`w-full px-4 py-3 rounded-xl bg-slate-50 border-2 ${errors.fullName ? 'border-destructive focus:border-destructive' : 'border-gray-200 focus:border-primary'} focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all`}
+                      placeholder="John Doe"
+                    />
+                    {errors.fullName && <p className="text-sm text-destructive font-medium">{errors.fullName.message}</p>}
                   </div>
-                  <div className="space-y-1.5">
-                    <label className="text-sm font-bold text-primary block">Phone Number</label>
-                    <input {...register("phone")} className={fieldClass(!!errors.phone)} placeholder="088-xxx-xxxx" autoComplete="tel" />
-                    {errors.phone && <p className="text-sm text-red-500">{errors.phone.message}</p>}
+
+                  {/* Phone */}
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-primary">Phone Number</label>
+                    <input 
+                      {...register("phone")}
+                      className={`w-full px-4 py-3 rounded-xl bg-slate-50 border-2 ${errors.phone ? 'border-destructive focus:border-destructive' : 'border-gray-200 focus:border-primary'} focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all`}
+                      placeholder="088-xxx-xxxx"
+                    />
+                    {errors.phone && <p className="text-sm text-destructive font-medium">{errors.phone.message}</p>}
                   </div>
                 </div>
 
                 {/* Email */}
-                <div className="space-y-1.5">
-                  <label className="text-sm font-bold text-primary block">Email Address</label>
-                  <input {...register("email")} type="email" className={fieldClass(!!errors.email)} placeholder="johndoe@example.com" autoComplete="email" />
-                  {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-primary">Email Address</label>
+                  <input 
+                    {...register("email")}
+                    type="email"
+                    className={`w-full px-4 py-3 rounded-xl bg-slate-50 border-2 ${errors.email ? 'border-destructive focus:border-destructive' : 'border-gray-200 focus:border-primary'} focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all`}
+                    placeholder="johndoe@example.com"
+                  />
+                  {errors.email && <p className="text-sm text-destructive font-medium">{errors.email.message}</p>}
                 </div>
 
-                {/* Row 2 */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
-                  <div className="space-y-1.5">
-                    <label className="text-sm font-bold text-primary block">Department</label>
-                    <select {...register("department")} className={fieldClass(!!errors.department)}>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {/* Department */}
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-primary">Department</label>
+                    <select 
+                      {...register("department")}
+                      className={`w-full px-4 py-3 rounded-xl bg-slate-50 border-2 ${errors.department ? 'border-destructive focus:border-destructive' : 'border-gray-200 focus:border-primary'} focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all`}
+                    >
                       <option value="">Select a Department</option>
-                      {DEPARTMENTS.map((d) => (
+                      {DEPARTMENTS.map(d => (
                         <option key={d.id} value={d.name}>{d.name}</option>
                       ))}
                     </select>
-                    {errors.department && <p className="text-sm text-red-500">{errors.department.message}</p>}
+                    {errors.department && <p className="text-sm text-destructive font-medium">{errors.department.message}</p>}
                   </div>
-                  <div className="space-y-1.5">
-                    <label className="text-sm font-bold text-primary block">Course of Interest</label>
-                    <select {...register("courseOfInterest")} disabled={!selectedDepartment} className={`${fieldClass(!!errors.courseOfInterest)} disabled:opacity-50 disabled:cursor-not-allowed`}>
+
+                  {/* Course */}
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-primary">Course of Interest</label>
+                    <select 
+                      {...register("courseOfInterest")}
+                      disabled={!selectedDepartment}
+                      className={`w-full px-4 py-3 rounded-xl bg-slate-50 border-2 ${errors.courseOfInterest ? 'border-destructive focus:border-destructive' : 'border-gray-200 focus:border-primary'} focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all disabled:opacity-50`}
+                    >
                       <option value="">Select a Course</option>
-                      {availableCourses.map((c) => (
+                      {availableCourses.map(c => (
                         <option key={c} value={c}>{c}</option>
                       ))}
                     </select>
-                    {errors.courseOfInterest && <p className="text-sm text-red-500">{errors.courseOfInterest.message}</p>}
+                    {errors.courseOfInterest && <p className="text-sm text-destructive font-medium">{errors.courseOfInterest.message}</p>}
                   </div>
                 </div>
 
                 {/* Address */}
-                <div className="space-y-1.5">
-                  <label className="text-sm font-bold text-primary block">Residential Address</label>
-                  <input {...register("address")} className={fieldClass(!!errors.address)} placeholder="Enter your full address" autoComplete="street-address" />
-                  {errors.address && <p className="text-sm text-red-500">{errors.address.message}</p>}
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-primary">Residential Address</label>
+                  <input 
+                    {...register("address")}
+                    className={`w-full px-4 py-3 rounded-xl bg-slate-50 border-2 ${errors.address ? 'border-destructive focus:border-destructive' : 'border-gray-200 focus:border-primary'} focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all`}
+                    placeholder="Enter your full address"
+                  />
+                  {errors.address && <p className="text-sm text-destructive font-medium">{errors.address.message}</p>}
                 </div>
 
                 {/* Educational Background */}
-                <div className="space-y-1.5">
-                  <label className="text-sm font-bold text-primary block">Educational Background</label>
-                  <textarea
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-primary">Educational Background</label>
+                  <textarea 
                     {...register("educationalBackground")}
                     rows={4}
-                    className={`${fieldClass(!!errors.educationalBackground)} resize-none`}
+                    className={`w-full px-4 py-3 rounded-xl bg-slate-50 border-2 ${errors.educationalBackground ? 'border-destructive focus:border-destructive' : 'border-gray-200 focus:border-primary'} focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all resize-none`}
                     placeholder="Briefly describe your highest level of education (e.g., High School Graduate, University, etc.)"
                   />
-                  {errors.educationalBackground && <p className="text-sm text-red-500">{errors.educationalBackground.message}</p>}
+                  {errors.educationalBackground && <p className="text-sm text-destructive font-medium">{errors.educationalBackground.message}</p>}
                 </div>
 
-                <button
+                <button 
                   type="submit"
                   disabled={applicationMutation.isPending}
-                  className="w-full py-3.5 sm:py-4 rounded-xl font-bold text-base sm:text-lg bg-accent text-white shadow-lg hover:bg-orange-500 transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 active:scale-95"
+                  className="w-full py-4 rounded-xl font-bold text-lg bg-accent text-white shadow-lg hover:shadow-xl hover:bg-orange-500 transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {applicationMutation.isPending ? (
-                    <><Loader2 className="w-5 h-5 sm:w-6 sm:h-6 animate-spin" /> Submitting...</>
-                  ) : (
-                    "Submit Application"
-                  )}
+                    <>
+                      <Loader2 className="w-6 h-6 animate-spin" />
+                      Submitting...
+                    </>
+                  ) : "Submit Application"}
                 </button>
               </form>
             </div>
           )}
+
         </div>
       </section>
     </PageLayout>
