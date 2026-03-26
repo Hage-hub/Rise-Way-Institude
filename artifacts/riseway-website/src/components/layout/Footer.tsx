@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { GraduationCap, MapPin, Phone, Mail, ChevronRight } from "lucide-react";
+import { MapPin, Phone, Mail, ChevronRight } from "lucide-react";
 import { SITE_INFO } from "@/lib/constants";
 
 export function Footer() {
@@ -10,18 +10,12 @@ export function Footer() {
           
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2 group mb-6 inline-flex">
-              <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-primary shadow-lg">
-                <GraduationCap className="w-7 h-7" />
-              </div>
-              <div>
-                <h2 className="font-display font-bold text-2xl text-white leading-none">
-                  {SITE_INFO.shortName}
-                </h2>
-                <p className="text-xs font-medium text-accent uppercase tracking-wider mt-1">
-                  Institute
-                </p>
-              </div>
+            <Link href="/" className="inline-flex mb-6">
+              <img
+                src="/logo.jpg"
+                alt="RISE-WAY Technical And Professional Institute"
+                className="h-16 w-auto object-contain bg-white rounded-lg p-1"
+              />
             </Link>
             <p className="text-primary-foreground/70 mb-6 font-medium italic">
               "{SITE_INFO.motto}"

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, GraduationCap } from "lucide-react";
-import { SITE_INFO } from "@/lib/constants";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
@@ -36,18 +35,12 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white shadow-lg group-hover:shadow-primary/30 transition-all duration-300">
-              <GraduationCap className="w-6 h-6" />
-            </div>
-            <div>
-              <h1 className="font-display font-bold text-xl text-primary leading-none">
-                {SITE_INFO.shortName}
-              </h1>
-              <p className="text-[10px] font-medium text-accent uppercase tracking-wider hidden sm:block">
-                Institute
-              </p>
-            </div>
+          <Link href="/" className="flex items-center group">
+            <img
+              src="/logo.jpg"
+              alt="RISE-WAY Technical And Professional Institute"
+              className="h-14 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Nav */}
