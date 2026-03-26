@@ -1,0 +1,128 @@
+Build a complete MVP website for a vocational institution called:
+
+RISE-WAY Technical And Professional Institute
+Motto: “Equipping Hands and Uplifting Lives”
+
+PRODUCT GOAL
+Create a professional, user-friendly website that:
+Introduces the institution
+Showcases training programs
+Accepts student applications
+Shares updates about cohorts and events
+Connects with partners, sponsors, and employers
+TARGET AUDIENCE
+Young people looking to learn practical skills
+Prospective students across Liberia
+Parents and guardians
+Employers and industry professionals
+NGOs, partners, and sponsors
+Current students and alumni
+CORE PAGES
+
+A. HOME PAGE
+
+Hero section with school name and motto
+Short introduction about the institute
+Highlight key programs (Creative, Technical, Professional)
+Call-to-action buttons:
+Apply Now
+View Courses
+Showcase images of training and students
+Quick stats (students trained, programs, etc.)
+
+B. ABOUT US
+
+Mission:
+To empower individuals with practical, in-demand skills that create opportunities for employment, entrepreneurship, and personal growth.
+Vision:
+To build a generation of skilled, self-reliant, and innovative young people who can contribute meaningfully to Liberia’s development and beyond.
+Location:
+Gotumo Town, Kakata City, Margibi County, Moses Ndorbor Building
+Add section about campus (physical training environment)
+
+C. DEPARTMENTS & PROGRAMS
+
+Creative Department
+Cake Decoration
+Interior Decoration & Event Planning
+Pastry
+Catering
+Tie & Dye
+Ice Cream Making
+Technical Department
+POP (Plaster of Paris)
+Electronics & Gadget Repair
+Electrical Installation
+Plumbing
+Satellite & DSTV Installation
+Air Conditioning & Refrigeration
+Professional Department
+Computer Literacy
+Graphic Design
+Business & Entrepreneurship
+Financial Management
+
+D. ADMISSIONS / APPLY NOW
+
+Create an online application form with fields:
+Full Name
+Email Address
+Phone Number
+Course of Interest
+Department
+Address
+Educational Background
+When the form is submitted:
+Automatically send the application details (Admission Letter) to:
+risewaytechpro@gmail.com
+Show confirmation message:
+“Your application has been successfully submitted. Our team will contact you.”
+
+E. EVENTS & COHORTS
+
+List upcoming training cohorts
+Display start dates, duration, and programs
+Show past events
+
+F. GALLERY
+
+Display photos and videos of:
+Training sessions
+Student work
+Events and activities
+
+G. TESTIMONIALS
+
+Show feedback from students
+Include name and course studied
+
+H. CONTACT US
+
+Display:
+Director General: Stephen Tw Mulbah III
+Phone: 088-912-0448 / 0778-444-308
+Add contact form (name, email, message)
+Include map/location directions
+EXTRA FEATURES
+Responsive design (mobile + desktop)
+Navigation menu for all pages
+Footer with contact info and social links
+Blog/News section for updates
+Event listing system
+FUNCTIONAL REQUIREMENTS
+Application form must send email to:
+risewaytechpro@gmail.com
+All forms must validate input fields
+Website should load fast and be easy to navigate
+Ensure all pages are connected and working
+UI/UX DESIGN
+Clean, modern design
+Use strong visuals of training and skills
+Use colors that represent growth and professionalism
+Clear call-to-action buttons (Apply Now, Contact Us)
+FINAL GOAL
+Create a professional online presence for RISE-WAY Technical And Professional Institute that:
+Attracts students
+Builds trust with partners
+Makes it easy to apply
+Showcases real skills and impact

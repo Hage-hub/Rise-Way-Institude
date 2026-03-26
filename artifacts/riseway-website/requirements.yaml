@@ -1,0 +1,12 @@
+packages:
+  "framer-motion": "For page transitions and scroll-triggered animations to make the site feel premium and dynamic"
+  "@hookform/resolvers": "Zod validation for the admissions and contact forms"
+  "react-hook-form": "Form state management"
+  "zod": "Schema validation for forms"
+  "lucide-react": "Beautiful icons for UI elements"
+
+images: []
+
+notes:
+  - "Using provided local photos from the /public directory for all imagery."
+  - "Using API hooks from @workspace/api-client-react for form submissions."
