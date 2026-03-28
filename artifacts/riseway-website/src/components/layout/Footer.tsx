@@ -38,6 +38,7 @@ export function Footer() {
                 { n: "About Us", p: "/about" },
                 { n: "Our Programs", p: "/programs" },
                 { n: "Admissions", p: "/apply" },
+                { n: "Our Team", p: "/team" },
                 { n: "Student Gallery", p: "/gallery" },
                 { n: "Contact", p: "/contact" }
               ].map((link) => (

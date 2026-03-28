@@ -11,6 +11,7 @@ import Events from "@/pages/Events";
 import Gallery from "@/pages/Gallery";
 import Testimonials from "@/pages/Testimonials";
 import Contact from "@/pages/Contact";
+import Team from "@/pages/Team";
 import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient({
@@ -33,6 +34,7 @@ function Router() {
       <Route path="/gallery" component={Gallery} />
       <Route path="/testimonials" component={Testimonials} />
       <Route path="/contact" component={Contact} />
+      <Route path="/team" component={Team} />
       <Route component={NotFound} />
     </Switch>
   );
