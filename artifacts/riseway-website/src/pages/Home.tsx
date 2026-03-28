@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, Users, BookOpen, Trophy, Award } from "lucide-react";
+import { ArrowRight, CheckCircle2, BookOpen, Award } from "lucide-react";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { IMAGES, SITE_INFO, DEPARTMENTS } from "@/lib/constants";
 
@@ -60,10 +60,8 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-8">
             <div className="bg-white rounded-2xl shadow-xl shadow-primary/5 border border-gray-100 p-8 flex justify-between divide-x divide-gray-100">
               {[
-                { icon: Users, label: "Students Trained", value: "200+" },
                 { icon: BookOpen, label: "Departments", value: "3" },
                 { icon: Award, label: "Programs", value: "19+" },
-                { icon: Trophy, label: "Years Excellence", value: "5+" },
               ].map((stat, i) => (
                 <div key={i} className="flex-1 px-8 flex items-center gap-6">
                   <div className="w-14 h-14 rounded-2xl bg-primary/5 flex items-center justify-center text-accent">
@@ -84,10 +82,8 @@ export default function Home() {
       <section className="lg:hidden bg-white py-12 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 gap-8">
           {[
-            { label: "Students", value: "200+" },
             { label: "Departments", value: "3" },
             { label: "Programs", value: "19+" },
-            { label: "Years", value: "5+" },
           ].map((stat, i) => (
             <div key={i} className="text-center">
               <h4 className="text-4xl font-display font-bold text-primary mb-1">{stat.value}</h4>

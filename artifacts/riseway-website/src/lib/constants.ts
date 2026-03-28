@@ -17,6 +17,7 @@ export const IMAGES = {
   electric: `${BASE_URL}/ed840186-1099-4766-a03b-c21284bfe735_1774484256134.jpg`,
   orientation: `${BASE_URL}/f18a95bf-60cd-40ae-b22a-6b45019d4bac_1774484256135.jpg`,
   speaker: `${BASE_URL}/fd96c48e-458a-4376-8085-2d91896367fb_1774484256136.jpg`,
+  secretary: `${BASE_URL}/secretary.jpg`,
 };
 
 export const SITE_INFO = {

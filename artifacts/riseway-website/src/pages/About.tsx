@@ -70,7 +70,7 @@ export default function About() {
             <div className="flex-1 order-2 md:order-1">
               <div className="relative">
                 <div className="absolute inset-0 bg-primary rounded-3xl -translate-x-4 translate-y-4 -z-10"></div>
-                <img src={IMAGES.director} alt="Director General" className="rounded-3xl shadow-xl w-full" />
+                <img src={IMAGES.secretary} alt="Secretary General" className="rounded-3xl shadow-xl w-full" />
               </div>
             </div>
             <div className="flex-1 order-1 md:order-2">
