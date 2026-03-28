@@ -135,4 +135,31 @@
 /* Glassmorphism utilities */
 .glass {
   @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-xl;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+/* Cross-browser image rendering */
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+/* Smooth scrolling across browsers */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Button/input base reset for cross-browser consistency */
+button, input, select, textarea {
+  font-family: inherit;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Fix for Firefox flex gap support */
+* {
+  box-sizing: border-box;
 }
