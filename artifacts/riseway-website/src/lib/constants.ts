@@ -18,6 +18,16 @@ export const IMAGES = {
   orientation: `${BASE_URL}/f18a95bf-60cd-40ae-b22a-6b45019d4bac_1774484256135.jpg`,
   speaker: `${BASE_URL}/fd96c48e-458a-4376-8085-2d91896367fb_1774484256136.jpg`,
   secretary: `${BASE_URL}/secretary.jpg`,
+  galleryNew1: `${BASE_URL}/gallery_new1.jpg`,
+  galleryNew2: `${BASE_URL}/gallery_new2.jpg`,
+  galleryNew3: `${BASE_URL}/gallery_new3.jpg`,
+  galleryNew4: `${BASE_URL}/gallery_new4.jpg`,
+  galleryNew5: `${BASE_URL}/gallery_new5.jpg`,
+  galleryNew6: `${BASE_URL}/gallery_new6.jpg`,
+  galleryNew7: `${BASE_URL}/gallery_new7.jpg`,
+  galleryNew8: `${BASE_URL}/gallery_new8.jpg`,
+  galleryNew9: `${BASE_URL}/gallery_new9.jpg`,
+  galleryNew10: `${BASE_URL}/gallery_new10.jpg`,
 };
 
 export const SITE_INFO = {
