@@ -100,7 +100,7 @@ export default function Home() {
             <div className="flex-1 relative">
               <div className="absolute inset-0 bg-accent rounded-3xl translate-x-4 translate-y-4 -z-10"></div>
               <img 
-                src={IMAGES.director} 
+                src={IMAGES.secretary} 
                 alt="Director General" 
                 className="rounded-3xl shadow-xl w-full object-cover object-top h-[500px]"
               />
