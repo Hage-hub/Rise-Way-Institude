@@ -24,7 +24,7 @@ router.post("/applications", async (req, res) => {
       },
     });
 
-    const mailBody = `
+    const adminMailBody = `
 NEW STUDENT APPLICATION - RISE-WAY Technical And Professional Institute
 
 Full Name: ${data.fullName}
@@ -39,16 +39,50 @@ Educational Background: ${data.educationalBackground}
 This application was submitted via the RISE-WAY website.
 `;
 
-    await transporter.sendMail({
-      from: process.env.SMTP_USER || "risewaytechpro@gmail.com",
-      to: "risewaytechpro@gmail.com",
-      subject: `New Application: ${data.fullName} - ${data.courseOfInterest}`,
-      text: mailBody,
-    });
+    const studentMailBody = `
+Dear ${data.fullName},
 
-    req.log.info({ email: data.email }, "Application email sent successfully");
+Thank you for applying to RISE-WAY Technical And Professional Institute!
+
+We have received your application and our admissions team will review it shortly. You can expect to hear from us within a few business days.
+
+Here is a summary of your application:
+
+  Course of Interest : ${data.courseOfInterest}
+  Department         : ${data.department}
+  Phone              : ${data.phone}
+  Address            : ${data.address}
+
+If you have any questions in the meantime, feel free to contact us at:
+  Email : risewaytechpro@gmail.com
+  Phone : +231 770 025 364 / +231 886 400 396
+
+We look forward to welcoming you to RISE-WAY!
+
+Warm regards,
+RISE-WAY Technical And Professional Institute
+Gotumo Town, Kakata City, Liberia
+"Empowering Hands, Uplifting Lives"
+`;
+
+    await Promise.all([
+      transporter.sendMail({
+        from: `"RISE-WAY Institute" <${process.env.SMTP_USER || "risewaytechpro@gmail.com"}>`,
+        to: "risewaytechpro@gmail.com",
+        subject: `New Application: ${data.fullName} - ${data.courseOfInterest}`,
+        text: adminMailBody,
+      }),
+      transporter.sendMail({
+        from: `"RISE-WAY Institute" <${process.env.SMTP_USER || "risewaytechpro@gmail.com"}>`,
+        to: data.email,
+        subject: `Application Received – RISE-WAY Technical And Professional Institute`,
+        text: studentMailBody,
+      }),
+    ]);
+
+    req.log.info({ email: data.email }, "Application emails sent successfully");
   } catch (err) {
-    req.log.warn({ err }, "Failed to send application email - storing application anyway");
+    req.log.warn({ err }, "Failed to send application emails - storing application anyway");
   }
 
   res.json({
