@@ -46,7 +46,7 @@ const ADMINISTRATORS = [
   {
     name: "Stephen Tw Mulbah III",
     title: "Director General",
-    image: `${BASE}/secretary.jpg`,
+    image: `${BASE}/a4c549a3-4360-41d9-9b63-b114d034e39a_1774484255905.jpg`,
   },
   {
     name: "William H. Varney",

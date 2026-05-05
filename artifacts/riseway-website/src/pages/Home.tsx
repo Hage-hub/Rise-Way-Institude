@@ -100,9 +100,9 @@ export default function Home() {
             <div className="flex-1 relative">
               <div className="absolute inset-0 bg-accent rounded-3xl translate-x-4 translate-y-4 -z-10"></div>
               <img 
-                src={IMAGES.secretary} 
-                alt="Secretary General" 
-                className="rounded-3xl shadow-xl w-full object-cover h-[500px]"
+                src={IMAGES.director} 
+                alt="Director General" 
+                className="rounded-3xl shadow-xl w-full object-cover object-top h-[500px]"
               />
               <div className="absolute -bottom-8 -left-8 glass p-6 rounded-2xl hidden md:block">
                 <p className="font-display font-bold text-primary text-xl">Leadership</p>
